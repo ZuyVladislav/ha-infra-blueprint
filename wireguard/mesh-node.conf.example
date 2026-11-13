@@ -1,0 +1,19 @@
+[Interface]
+Address = 10.77.0.10/24
+ListenPort = 51820
+PrivateKey = <REPLACE_WITH_NODE_PRIVATE_KEY>
+MTU = 1420
+
+# Edge reverse proxy node
+[Peer]
+PublicKey = <REPLACE_WITH_GATEWAY_PUBLIC_KEY>
+Endpoint = 198.51.100.10:51820
+AllowedIPs = 10.77.0.1/32
+PersistentKeepalive = 25
+
+# Database replica / backup node
+[Peer]
+PublicKey = <REPLACE_WITH_DATA_NODE_PUBLIC_KEY>
+Endpoint = 198.51.100.20:51820
+AllowedIPs = 10.77.0.20/32
+PersistentKeepalive = 25

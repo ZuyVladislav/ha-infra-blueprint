@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.venv/
+*.tmp
+*.tar.gz
+*.sha256
+.pytest_cache/

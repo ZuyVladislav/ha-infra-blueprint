@@ -1,0 +1,22 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check bash syntax
+        run: bash -n deploy/atomic_release.sh backup/pg_backup_verify.sh
+      - name: Run WireGuard sample config audit
+        run: python scripts/wg_audit.py wireguard/mesh-node.conf.example
+      - name: Run unit and atomic rollback tests
+        run: python -m unittest discover -s tests -v
